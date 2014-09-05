@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rails Admin Kickstarter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="skin-blue">
+<header class="header">
+  <a href="/" class="logo">
+    DEMO
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user"></i>
+            <span><%= current_user.email %> <i class="caret"></i></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-header bg-light-blue">
+              <%= image_tag "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email)}", class: 'img-circle' %>
+              <p>
+                <%= current_user.email %>
+                <small>Member since <%=l current_user.created_at, format: '%b %Y' %></small>
+              </p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                <%= link_to 'Profile', edit_user_registration_path, class: 'btn btn-default btn-flat' %>
+              </div>
+              <div class="pull-right">
+                <%= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-default btn-flat', method: 'delete' %>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<div class="wrapper row-offcanvas row-offcanvas-left">
+  <aside class="left-side sidebar-offcanvas">
+    <section class="sidebar">
+      <ul class="sidebar-menu">
+        <li>
+          <a href="/">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+  <aside class="right-side">
+    <section class="content-header">
+      <%= yield :header %>
+    </section>
+    <section class="content">
+      <%= render 'notice', message: notice if notice %>
+      <%= render 'alert', message: alert if alert %>
+      <%= yield %>
+    </section>
+  </aside>
+</div>
+</body>
+</html>

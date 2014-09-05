@@ -1,0 +1,16 @@
+<html class="bg-black">
+<head>
+  <meta charset="UTF-8">
+  <title>AdminLTE | Log in</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body class="bg-black">
+<div class="form-box" id="login-box">
+  <%= render 'notice', message: notice if notice %>
+  <%= render 'alert', message: alert if alert %>
+  <%= yield %>
+</div>
+</body>
+</html>
